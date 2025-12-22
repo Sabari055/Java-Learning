@@ -1,0 +1,69 @@
+Java Collections Framework
+
+Why Collections?
+
+Problem with Arrays - Fixed Size and no in built methods like (add/remove/search utilities).
+Backend app need dynamic, fast, scalable data handling. Collection solves this
+
+
+Collection Framework architecture
+
+	Iterable
+	   |
+	Collection
+	   |
+	-------------------------------------
+	|                 |                 |
+	List              Set               Queue
+
+
+Separate Hierarchy 
+
+	Map
+ 	|
+	----------------------------
+	|             |            |
+	HashMap   LinkedHashMap  TreeMap
+
+
+Implementations of List interfaces
+
+	List (Interface)
+ 	|
+ 	---------------------------------------------------
+	|                  |                |             |
+	ArrayList       LinkedList        Vector        Stack
+
+	List interface has an ordered, index based, and duplicates allowed collection.
+
+Array List
+
+⦁	Dynamic Array,
+⦁	random access is fast,
+⦁	Not thread safe	
+
+Internal implementations of Array list
+
+⦁	Backed by Object[] array with initial capacity of 10 and when exceeded it will grow by 50%.
+⦁	If size is know before we can give custom Capacity like 100, 1000 it will improve performance because resizing is costly.
+⦁	Array list achieves fast random access by its internal architecture object array[].
+⦁	List implements RandomAccess Marker interface.
+
+Linked List
+
+Linked list implements List and Deque interfaces, so it can behave like 
+
+List - ordered Collection
+Queue and stack
+
+LinkedList supports index-based operations, but internally it is node-based. Methods like get(index) and add(index) require traversal, so they are O(n). Java optimizes traversal by starting from head or tail depending on index position.
+
+LinkedList stores elements as nodes, where each node contains:
+
+⦁	Data
+⦁	Reference to previous node
+⦁	Reference to next node
+
+➡ It is a Doubly Linked List    
+
+
