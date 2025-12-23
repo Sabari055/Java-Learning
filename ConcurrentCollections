@@ -1,0 +1,37 @@
+Concurrent Collections
+
+1️⃣ CopyOnWriteArrayList
+
+✅ Definition
+
+CopyOnWriteArrayList is a thread-safe List implementation where all mutative operations (add, remove, update) create a new copy of the underlying array, allowing lock-free and consistent reads.
+
+🔹 Key Characteristics
+
+✔ Thread-safe
+✔ Read operations are lock-free
+✔ Write operations are synchronized (locked)
+✔ No ConcurrentModificationException
+✔ Best for read-heavy scenarios
+
+🔥 Interview Line
+
+CopyOnWriteArrayList achieves thread safety by copying the array on writes and allowing lock-free reads on immutable snapshots.
+
+2️⃣ CopyOnWriteArraySet
+✅ Definition
+
+CopyOnWriteArraySet is a thread-safe Set implementation backed by a CopyOnWriteArrayList, ensuring no duplicates and providing lock-free read operations.
+
+🔹 Key Characteristics
+
+✔ Thread-safe
+✔ No duplicates
+✔ Lock-free reads
+✔ Slower writes
+✔ Maintains insertion order
+
+
+🔥 Interview Line
+CopyOnWriteArraySet provides thread-safe uniqueness by delegating storage to CopyOnWriteArrayList and using snapshot-based reads.
+
