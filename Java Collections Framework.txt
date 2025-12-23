@@ -66,4 +66,95 @@ LinkedList stores elements as nodes, where each node contains:
 
 ➡ It is a Doubly Linked List    
 
+Vector
+
+Vector is a thread-safe growable array same as ArrayList but is considered legacy due to performance issues and 
+poor concurrency design.  
+
+Stack
+
+Stack is a legacy synchronized LIFO class extending Vector. In modern Java, Deque implementations like 
+ArrayDeque or LinkedList should be used instead.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Set Interface 
+
+🔹 Key Characteristics
+
+✔ No duplicates allowed
+✔ At most one null (depends on implementation)
+✔ No index-based access
+✔ Order depends on implementation
+
+Collection
+   │
+   └── Set
+        ├── HashSet
+        │     └── LinkedHashSet
+        └── SortedSet
+              └── NavigableSet
+                     └── TreeSet
+
+ Methods in Set Interface
+
+👉 Set does NOT add new methods
+👉 It only inherits from Collection
+
+HashSet
+
+✔ No order guarantee
+✔ Allows one null
+✔ Not synchronized
+✔ Fastest (O(1) average)
+
+🔹 Internal Working (VERY IMPORTANT 🔥)
+HashSet is backed by HashMap
+
+🔹 Hashing Flow
+⦁	hashCode() called
+⦁	Bucket location found
+⦁	equals() used to avoid duplicates
+
+LinkedHashSet
+
+🔹 Characteristics
+
+✔ Maintains insertion order
+✔ Slightly slower than HashSet
+✔ One null allowed
+
+🔹 Internal
+HashMap + Doubly Linked List
+
+TreeSet (Sorted Set)
+
+🔹 Characteristics
+
+✔ Sorted order
+✔ No null allowed
+✔ Slower than HashSet
+
+🔹 Internal Working
+Backed by Red-Black Tree
+
+SortedSet & NavigableSet Methods
+🔹 SortedSet
+
+⦁	first()
+⦁	last()
+⦁	headSet(E toElement)
+⦁	tailSet(E fromElement)
+⦁	subSet(E from, E to)
+
+🔹 NavigableSet (Advanced)
+
+⦁	lower(E e)
+⦁	floor(E e)
+⦁	ceiling(E e)
+⦁	higher(E e)
+⦁	pollFirst()
+⦁	pollLast()
+⦁	descendingSet()
+
 
