@@ -157,4 +157,60 @@ SortedSet & NavigableSet Methods
 ⦁	pollLast()
 ⦁	descendingSet()
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Queue Interface
+
+Stores elements in FIFO order
+methods of Queue - offer / poll / peek
+
+Iterable (interface)
+  ↑
+Collection (interface)
+  ↑
+Queue (interface)
+   ├── Deque (interface)
+   │     ├── ArrayDeque (class)
+   │     └── LinkedList (class)
+   │
+   ├── PriorityQueue (class)
+   │
+   └── BlockingQueue (interface)
+         ├── ArrayBlockingQueue      (class)
+         ├── LinkedBlockingQueue     (class)
+         ├── PriorityBlockingQueue   (class)
+         ├── DelayQueue              (class)
+         └── SynchronousQueue        (class)
+
+Queue Implementations (Non-Concurrent)
+
+ LinkedList (Queue + Deque)
+
+Internal Architecture
+✔ Doubly Linked List
+✔ Node has prev, next, item
+
+ArrayDeque
+
+Internal Architecture
+✔ Resizable circular array
+✔ Head & tail pointers
+✔ Faster than LinkedList
+✔ No null allowed
+
+PriorityQueue
+
+Internal Architecture 🔥
+✔ Binary Heap (Min Heap)
+✔ Array-backed
+✔ Ordering by priority
+✔ Not FIFO
+✔ No null
+
+Use Case
+
+✔ Task scheduling
+✔ Job queues
+✔ Dijkstra algorithm
+
+Concurrent Queue's - Blocking Queue
