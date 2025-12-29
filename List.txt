@@ -1,0 +1,137 @@
+1️⃣ List Interface – Overview (Interview Intro)
+
+# List is a child interface of Collection that:
+# Maintains insertion order
+# Allows duplicate elements
+# Allows multiple nulls (depends on implementation)
+# Provides index-based access
+
+📌 Package: java.util
+
+2️⃣ List Hierarchy (Very Important for Interview)
+
+  Iterable
+   ↑
+  Collection
+   ↑
+  List
+   ├── ArrayList
+   ├── LinkedList
+   ├── Vector
+   │     └── Stack
+   ├── CopyOnWriteArrayList   (Concurrent)
+
+3️⃣ Key Methods in List Interface (Mention 2–3 in Interview)
+
+      add(int index, E element)
+      get(int index)
+      set(int index, E element)
+      remove(int index)
+      indexOf(Object o)
+      listIterator()
+
+📌 Index-based operations are what make List special.
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Implementations
+  
+  1️⃣ ArrayList
+🔹 Internal Data Structure
+Dynamic Array
+Backed by Object[]
+
+🔹 Key Points to Say
+
+Maintains insertion order
+Allows duplicates & multiple nulls
+Not synchronized (not thread-safe)
+Fast random access → O(1)
+Slow insert/delete in middle → O(n)
+
+🔹 Resizing
+Default capacity = 10
+Grows by 50% (newCapacity = old + old/2)
+
+🔹 When to Use
+✔ Read-heavy operations
+✔ Frequent access using index
+
+  2️⃣ LinkedList
+🔹 Internal Data Structure
+Doubly Linked List
+
+Each node has:
+previous
+data
+next
+
+🔹 Key Points to Say
+
+Maintains insertion order
+Allows duplicates & nulls
+Slower access → O(n)
+Faster insert/delete → O(1) (if node is known)
+
+Implements:
+
+List
+Deque
+Queue
+
+🔹 When to Use
+✔ Frequent insertions/deletions
+✔ Queue / Stack operations
+
+  3️⃣ Vector (Legacy Class)
+🔹 Internal Data Structure
+Dynamic Array
+
+🔹 Key Points to Say
+
+Synchronized → thread-safe
+Slower than ArrayList
+Legacy class (introduced in Java 1.0)
+
+🔹 Growth
+Doubles size (100% increase)
+
+🔹 Interview Note
+❌ Rarely used now
+✔ Replaced by concurrent collections
+
+  4️⃣ Stack (Legacy – LIFO)
+🔹 Parent Class
+Extends Vector
+
+🔹 Key Points to Say
+
+Follows LIFO
+Methods:
+push()
+pop()
+peek()
+Thread-safe (because Vector)
+
+🔹 Interview Tip
+❌ Not recommended
+✔ Use Deque (ArrayDeque) instead
+
+5️⃣ CopyOnWriteArrayList (🔥 Concurrent List)
+🔹 Package
+java.util.concurrent
+
+🔹 Internal Working
+Creates new copy of array on modification
+Read operations are lock-free
+
+🔹 Key Points to Say
+
+Thread-safe
+No ConcurrentModificationException
+Write operations are costly
+Best for read-heavy concurrent systems
+
+🔹 When to Use
+✔ Multiple threads reading frequently
+✔ Rare modifications
+
+  
