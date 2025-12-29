@@ -1,0 +1,63 @@
+🔹 Set in Java – Hierarchy (Interface vs Class)
+1️⃣ What is Set? (1-line intro for interview)
+
+Set is a Collection that does not allow duplicate elements and does not support index-based access.
+
+📌 Package: java.util
+
+2️⃣ Set Hierarchy
+
+Iterable                (interface)
+   ↑
+Collection              (interface)
+   ↑
+Set                     (interface)
+   ├── HashSet           (class)
+   │     └── LinkedHashSet (class)
+   │
+   ├── SortedSet         (interface)
+   │     └── NavigableSet (interface)
+   │           └── TreeSet (class)
+   │
+   └── CopyOnWriteArraySet (class - concurrent)
+
+🔹 Set (Interface)
+No duplicates
+At most one null (depends on implementation)
+No ordering guarantee
+
+🔹 SortedSet (Interface)
+Elements are stored in sorted order
+Sorting based on:
+Natural ordering (Comparable)
+Custom ordering (Comparator)
+
+🔹 NavigableSet (Interface)
+Adds navigation methods:
+lower(), higher()
+floor(), ceiling()
+pollFirst(), pollLast()
+
+5️⃣ Key Classes in Set Hierarchy
+
+🔹 HashSet (Class)
+Implements Set
+Internally uses HashMap
+No insertion order
+Allows one null
+
+🔹 LinkedHashSet (Class)
+Extends HashSet
+Maintains insertion order
+Slightly slower than HashSet
+
+🔹 TreeSet (Class)
+Implements NavigableSet
+Internally uses Red-Black Tree
+Always sorted
+❌ Does not allow null (Java 7+)
+
+🔹 CopyOnWriteArraySet (Class – Concurrent)
+Thread-safe
+Internally uses CopyOnWriteArrayList
+Best for read-heavy concurrent use
