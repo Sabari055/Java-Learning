@@ -1,0 +1,96 @@
+1️⃣ What is Queue? (One-Line Answer)
+Queue is a Collection designed to hold elements prior to processing, typically following FIFO (First-In-First-Out) order.
+
+📌 Package: java.util
+
+2️⃣ Queue Hierarchy (Interface vs Class)
+
+Iterable                    (interface)
+   ↑
+Collection                  (interface)
+   ↑
+Queue                       (interface)
+   │
+   ├── Deque                (interface)
+   │     ├── ArrayDeque     (class)
+   │     └── LinkedList     (class)
+   │
+   ├── PriorityQueue        (class)
+   │
+   └── BlockingQueue        (interface - concurrent)
+         ├── ArrayBlockingQueue      (class)
+         ├── LinkedBlockingQueue     (class)
+         ├── PriorityBlockingQueue   (class)
+         ├── DelayQueue              (class)
+         └── SynchronousQueue        (class)
+
+1️⃣ PriorityQueue (Class)
+🔹 Internal Structure
+
+Binary Heap (Min-Heap by default)
+
+🔹 Key Points to Say
+Does not follow FIFO
+Elements are ordered by:
+Natural order
+Comparator
+
+Head is smallest element
+❌ Not thread-safe
+❌ No null allowed
+
+🔹 Time Complexity
+Insert: O(log n)
+Remove: O(log n)
+
+🔹 When to Use
+✔ Scheduling
+✔ Priority-based processing
+
+2️⃣ Deque (Interface)
+Deque = Double Ended Queue
+Insert / remove from both ends
+Can behave as:
+Queue (FIFO)
+Stack (LIFO)
+
+3️⃣ ArrayDeque (Class)
+🔹 Internal Structure
+Resizable circular array
+
+🔹 Key Points to Say
+Faster than Stack & LinkedList
+No capacity restriction
+❌ No null elements
+Not thread-safe
+
+🔹 When to Use
+✔ Stack replacement
+✔ High-performance queue
+
+4️⃣ LinkedList (as Queue)
+🔹 Internal Structure
+Doubly Linked List
+
+🔹 Key Points to Say
+Implements:
+List
+Deque
+Queue
+Allows null
+Slower than ArrayDeque
+
+6️⃣ BlockingQueue (🔥 Concurrent Queue)
+
+Used in producer–consumer scenarios
+
+🔹 BlockingQueue Interface
+Thread-safe
+Blocks when:
+Queue is full (producer)
+Queue is empty (consumer)
+
+Commom impl:
+ArrayBlockingQueue
+LinkedBlockingQueue
+PriorityBlockingQueue etc.,
