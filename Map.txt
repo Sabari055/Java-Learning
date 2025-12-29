@@ -1,0 +1,187 @@
+🔹 Map in Java – Hierarchy (Interface vs Class)
+1️⃣ What is Map? (Interview one-liner)
+Map is an object that stores data in key–value pairs, where keys are unique and values can be duplicated.
+
+📌 Package: java.util
+📌 Map is NOT a child of Collection
+
+2️⃣ Map Hierarchy (Interface vs Class)
+
+Map                           (interface)
+│
+├── HashMap                   (class)
+│     └── LinkedHashMap       (class)
+│
+├── SortedMap                 (interface)
+│     └── NavigableMap        (interface)
+│           └── TreeMap       (class)
+│
+├── Hashtable                 (class - legacy)
+│
+├── ConcurrentMap             (interface)
+│     └── ConcurrentHashMap   (class)
+│
+└── EnumMap                   (class)
+
+4️⃣ Important Map Interfaces (Know This Clearly)
+
+🔹 Map (Interface)
+Stores key–value pairs
+Keys must be unique
+Allows one null key (depends on implementation)
+Values can have multiple nulls
+
+🔹 SortedMap (Interface)
+Keys are stored in sorted order
+Sorting based on:
+Natural ordering (Comparable)
+Custom ordering (Comparator)
+
+🔹 NavigableMap (Interface)
+Adds navigation methods:
+lowerKey(), higherKey()
+floorKey(), ceilingKey()
+firstEntry(), lastEntry()
+
+🔹 ConcurrentMap (Interface)
+Designed for concurrent access
+Atomic operations:
+putIfAbsent()
+remove(key, value)
+replace()
+
+5️⃣ Important Map Classes (High-Level)
+
+🔹 HashMap
+No ordering guarantee
+Allows one null key, multiple null values
+Not thread-safe
+Uses hashing
+
+🔹 LinkedHashMap
+Maintains insertion order
+Can maintain access order (LRU cache)
+Slightly slower than HashMap
+
+🔹 TreeMap
+Always sorted by key
+Uses Red-Black Tree
+❌ No null key
+Slower than HashMap (O(log n))
+
+🔹 Hashtable (Legacy)
+Synchronized (thread-safe)
+❌ No null key or value
+Slower → replaced by ConcurrentHashMap
+
+🔹 ConcurrentHashMap (🔥 Very Important)
+Thread-safe & high performance
+No locking on entire map
+❌ No null key or value
+Uses bucket-level locking (Java 8+)
+
+🔹 EnumMap
+Keys must be enum type
+Very fast
+Internally uses array
+❌ No null keys
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+👉 bucket → hashing → collision → treeify
+
+🔹 HashMap Internal Working (Java 8+)
+1️⃣ Basic Structure of HashMap
+🔹 Internal Data Structure
+
+HashMap internally uses an array of Node
+Node<K,V>[] table;
+
+Each Node contains:
+class Node<K,V> {
+    int hash;
+    K key;
+    V value;
+    Node<K,V> next; // for collision (linked list / tree)
+}
+
+📌 This array index is called a bucket.
+
+2️⃣ What is a Bucket?
+
+A bucket is an index position in the internal array where key-value pairs are stored.
+
+Example:
+Default capacity = 16
+Index range = 0 to 15
+
+Each bucket can have:
+Single entry
+Linked list (collision)
+Red-Black Tree (after treeify)
+
+3️⃣ Hashing (Very Important)
+🔹 Step 1: hashCode()
+Key’s hashCode() is called
+int h = key.hashCode();
+
+🔹 Step 2: Hash Spreading
+hash = h ^ (h >>> 16);
+👉 Improves distribution of keys across buckets
+
+🔹 Step 3: Index Calculation
+index = (n - 1) & hash;
+n = table size (power of 2)
+
+4️⃣ put() Operation – Step by Step
+Example:
+map.put("A", 10);
+
+Internal Flow:
+Compute hash of key "A"
+Calculate bucket index
+Check bucket:
+Empty → insert Node
+Not empty → collision handling
+
+5️⃣ Collision Handling
+
+Collision occurs when multiple keys map to the same bucket index.
+
+Java 7:
+Only Linked List
+Java 8+:
+Starts as Linked List
+Converts to Red-Black Tree if conditions met
+
+6️⃣ Treeify (🔥 Interview Favorite)
+🔹 When does LinkedList convert to Tree?
+Condition	Value
+Threshold	8 nodes
+Min capacity	64
+Structure	Red-Black Tree
+
+👉 If capacity < 64 → resize instead of treeify
+
+8️⃣ get() Operation – Step by Step
+map.get(key);
+
+Calculate hash
+Find bucket index
+Compare hash
+Compare key using equals()
+Return value
+
+9️⃣ Resize (Rehashing)
+🔹 When Resize Happens
+Load factor = 0.75
+
+Resize condition:
+size > capacity * loadFactor
+
+🔹 Resize Action
+Capacity doubles
+Recalculate bucket positions
+Reinsert nodes
+
+Null Handling - 👉 Null key always goes to bucket index 0
